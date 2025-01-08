@@ -17,4 +17,5 @@ All Models have been created
 # Accounts, Report,Settings, Website SetUp, Communication,Gallery
 # Online_Admission(Admission_Fee, Setting,)
 
-
+Migrations
+# Department(department_name)

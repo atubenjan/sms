@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('class__setups', function (Blueprint $table) {
             $table->id();
+            $table->string('class_name');
+            $table->string('section');
+            $table->string('status');
             $table->timestamps();
         });
     }

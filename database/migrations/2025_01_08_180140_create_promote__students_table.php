@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('promote__students', function (Blueprint $table) {
             $table->id();
+            $table->string('class_id');
+            $table->string('section_id');
+            $table->string('promote_section');
+            $table->string('promote_class');
+            $table->string('promote_session');
             $table->timestamps();
         });
     }
