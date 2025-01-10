@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DesignationResource\Pages;
-use App\Filament\Resources\DesignationResource\RelationManagers;
-use App\Models\Designation;
+use App\Filament\Resources\SyllabusResource\Pages;
+use App\Filament\Resources\SyllabusResource\RelationManagers;
+use App\Models\Syllabus;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,22 +13,24 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class DesignationResource extends Resource
+class SyllabusResource extends Resource
 {
-    protected static ?string $model = Designation::class;
+    protected static ?string $model = Syllabus::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-protected static ?string $navigationLabel = 'Designation';
-protected static ?string $navigationGroup = 'Human Resource';
-protected static ?string $modelLabel = 'Designations';
+    protected  static ?string $navigationLabel = 'Syllabus';
+    protected static ?string $navigationGroup = 'Academic';
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('designation_name')
+                Forms\Components\TextInput::make('class')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('status')
+                Forms\Components\TextInput::make('section')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('subject_group')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -38,9 +40,11 @@ protected static ?string $modelLabel = 'Designations';
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('designation_name')
+                Tables\Columns\TextColumn::make('class')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('status')
+                Tables\Columns\TextColumn::make('section')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('subject_group')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -75,10 +79,10 @@ protected static ?string $modelLabel = 'Designations';
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDesignations::route('/'),
-            'create' => Pages\CreateDesignation::route('/create'),
-            'view' => Pages\ViewDesignation::route('/{record}'),
-            'edit' => Pages\EditDesignation::route('/{record}/edit'),
+            'index' => Pages\ListSyllabi::route('/'),
+            'create' => Pages\CreateSyllabus::route('/create'),
+            'view' => Pages\ViewSyllabus::route('/{record}'),
+            'edit' => Pages\EditSyllabus::route('/{record}/edit'),
         ];
     }
 }

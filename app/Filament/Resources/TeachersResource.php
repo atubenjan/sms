@@ -19,7 +19,7 @@ class TeachersResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
     protected  static ?string $navigationLabel = 'Teacher';
-
+protected static ?string $navigationGroup = 'People';
     public static function form(Form $form): Form
     {
         return $form

@@ -19,7 +19,8 @@ class SubjectsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
     protected  static ?string $navigationLabel = 'Subject';
-
+    protected static ?string $navigationGroup = 'Academic';
+    protected static ?string $slug='subjects';
     public static function form(Form $form): Form
     {
         return $form

@@ -19,6 +19,8 @@ class ClassesResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-home';
     protected  static ?string $navigationLabel = 'Class';
+    protected static ?string $navigationGroup = 'Academic';
+    protected static ?string $slug='classes';
     public static function form(Form $form): Form
     {
         return $form

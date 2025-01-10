@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DesignationResource\Pages;
-use App\Filament\Resources\DesignationResource\RelationManagers;
-use App\Models\Designation;
+use App\Filament\Resources\ClassRoomResource\Pages;
+use App\Filament\Resources\ClassRoomResource\RelationManagers;
+use App\Models\ClassRoom;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,22 +13,25 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class DesignationResource extends Resource
+class ClassRoomResource extends Resource
 {
-    protected static ?string $model = Designation::class;
+    protected static ?string $model = ClassRoom::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-protected static ?string $navigationLabel = 'Designation';
-protected static ?string $navigationGroup = 'Human Resource';
-protected static ?string $modelLabel = 'Designations';
+    protected  static ?string $navigationLabel = 'Class Room';
+    protected static ?string $navigationGroup = 'Academic';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('designation_name')
+                Forms\Components\TextInput::make('class_room_n0')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('status')
+                Forms\Components\TextInput::make('class_room_capacity')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('class_room_status')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -38,9 +41,11 @@ protected static ?string $modelLabel = 'Designations';
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('designation_name')
+                Tables\Columns\TextColumn::make('class_room_n0')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('status')
+                Tables\Columns\TextColumn::make('class_room_capacity')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('class_room_status')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -75,10 +80,10 @@ protected static ?string $modelLabel = 'Designations';
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDesignations::route('/'),
-            'create' => Pages\CreateDesignation::route('/create'),
-            'view' => Pages\ViewDesignation::route('/{record}'),
-            'edit' => Pages\EditDesignation::route('/{record}/edit'),
+            'index' => Pages\ListClassRooms::route('/'),
+            'create' => Pages\CreateClassRoom::route('/create'),
+            'view' => Pages\ViewClassRoom::route('/{record}'),
+            'edit' => Pages\EditClassRoom::route('/{record}/edit'),
         ];
     }
 }

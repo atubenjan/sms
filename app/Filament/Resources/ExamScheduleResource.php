@@ -19,7 +19,8 @@ class ExamScheduleResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected  static ?string $navigationLabel = 'Exam Schedule';
-
+    protected static ?string $navigationGroup = 'Academic';
+    protected static ?string $slug='exam-schedules';
     public static function form(Form $form): Form
     {
         return $form

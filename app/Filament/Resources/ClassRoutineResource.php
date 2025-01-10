@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ExaminationResource\Pages;
-use App\Filament\Resources\ExaminationResource\RelationManagers;
-use App\Models\Examination;
+use App\Filament\Resources\ClassRoutineResource\Pages;
+use App\Filament\Resources\ClassRoutineResource\RelationManagers;
+use App\Models\ClassRoutine;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,27 +13,41 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ExaminationResource extends Resource
+class ClassRoutineResource extends Resource
 {
-    protected static ?string $model = Examination::class;
+    protected static ?string $model = ClassRoutine::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationLabel = 'Examination';
+    protected  static ?string $navigationLabel = 'Class Routine';
     protected static ?string $navigationGroup = 'Academic';
-    protected static ?string $slug='examinations';
+        
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('exam_name')
+                Forms\Components\TextInput::make('class')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DatePicker::make('exam_time')
-                    ->required(),
+                Forms\Components\TextInput::make('teacher')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('section')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('day')
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('start_time')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('end_time')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('class_room')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('status')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -43,14 +57,21 @@ class ExaminationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('exam_name')
+                Tables\Columns\TextColumn::make('class')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('exam_time')
-                    ->date()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('teacher')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('section')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('day')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('start_time')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('end_time')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('class_room')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('status')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -85,10 +106,10 @@ class ExaminationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListExaminations::route('/'),
-            'create' => Pages\CreateExamination::route('/create'),
-            'view' => Pages\ViewExamination::route('/{record}'),
-            'edit' => Pages\EditExamination::route('/{record}/edit'),
+            'index' => Pages\ListClassRoutines::route('/'),
+            'create' => Pages\CreateClassRoutine::route('/create'),
+            'view' => Pages\ViewClassRoutine::route('/{record}'),
+            'edit' => Pages\EditClassRoutine::route('/{record}/edit'),
         ];
     }
 }
