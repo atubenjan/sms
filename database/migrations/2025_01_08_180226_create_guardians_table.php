@@ -22,9 +22,7 @@ return new class extends Migration
             $table->string('guardian_nid');
             $table->string('guardian_photo');
             $table->string('guardian_status');
-            $table->foreignId('student_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('relation_id')->constrained()->onDelete('cascade');         
+              
             $table->timestamps();
         });
     }

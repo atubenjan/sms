@@ -18,12 +18,20 @@ class ClassesResource extends Resource
     protected static ?string $model = Classes::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected  static ?string $navigationLabel = 'Class';
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('class_name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('class_status')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('class_code')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -31,12 +39,26 @@ class ClassesResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('class_name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('class_status')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('class_code')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -58,6 +80,7 @@ class ClassesResource extends Resource
         return [
             'index' => Pages\ListClasses::route('/'),
             'create' => Pages\CreateClasses::route('/create'),
+            'view' => Pages\ViewClasses::route('/{record}'),
             'edit' => Pages\EditClasses::route('/{record}/edit'),
         ];
     }

@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-   
             $table->string('student_first_name');
             $table->string('student_last_name');
-            $table-string('student_class');
+            $table->string('student_class');
             $table->string('student_religion');
             $table->string('student_gender');
             $table->string('student_guardian');
@@ -30,7 +29,6 @@ return new class extends Migration
             $table->string('student_address');
             $table->string('student_photo');
             $table->string('student_status');
-            $table->foreignId('class_id')->constrained()->onDelete('cascade');
               $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('subject_code');
             $table->string('subject_type');
             $table->string('subject_status');
-            $table->foreignId('class_id')->constrained()->onDelete('cascade');
+           
             $table->timestamps();
         });
     }

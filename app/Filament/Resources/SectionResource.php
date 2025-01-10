@@ -18,12 +18,18 @@ class SectionResource extends Resource
     protected static ?string $model = Section::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected  static ?string $navigationLabel = 'Section';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('section_name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('section_status')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -31,12 +37,24 @@ class SectionResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('section_name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('section_status')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -58,6 +76,7 @@ class SectionResource extends Resource
         return [
             'index' => Pages\ListSections::route('/'),
             'create' => Pages\CreateSection::route('/create'),
+            'view' => Pages\ViewSection::route('/{record}'),
             'edit' => Pages\EditSection::route('/{record}/edit'),
         ];
     }

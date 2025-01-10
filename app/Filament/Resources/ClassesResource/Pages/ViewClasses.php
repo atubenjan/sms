@@ -4,17 +4,16 @@ namespace App\Filament\Resources\ClassesResource\Pages;
 
 use App\Filament\Resources\ClassesResource;
 use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 
-class EditClasses extends EditRecord
+class ViewClasses extends ViewRecord
 {
     protected static string $resource = ClassesResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
+            Actions\EditAction::make(),
         ];
     }
 }
