@@ -21,6 +21,7 @@ class ExamScheduleResource extends Resource
     protected  static ?string $navigationLabel = 'Exam Schedule';
     protected static ?string $navigationGroup = 'Academic';
     protected static ?string $slug='exam-schedules';
+    protected static ?int $navigationSort = 6;
     public static function form(Form $form): Form
     {
         return $form

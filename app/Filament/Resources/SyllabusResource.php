@@ -20,6 +20,7 @@ class SyllabusResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected  static ?string $navigationLabel = 'Syllabus';
     protected static ?string $navigationGroup = 'Academic';
+    protected static ?int $navigationSort = 8;
     public static function form(Form $form): Form
     {
         return $form

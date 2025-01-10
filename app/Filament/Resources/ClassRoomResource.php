@@ -20,6 +20,7 @@ class ClassRoomResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected  static ?string $navigationLabel = 'Class Room';
     protected static ?string $navigationGroup = 'Academic';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {

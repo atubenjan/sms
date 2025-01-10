@@ -20,6 +20,7 @@ class ReasonResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 protected  static ?string $navigationLabel = 'Reason';
 protected static ?string $navigationGroup ='Academic';
+protected static ?int $navigationSort = 10;
     public static function form(Form $form): Form
     {
         return $form

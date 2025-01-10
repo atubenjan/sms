@@ -21,6 +21,7 @@ class ClassesResource extends Resource
     protected  static ?string $navigationLabel = 'Class';
     protected static ?string $navigationGroup = 'Academic';
     protected static ?string $slug='classes';
+    protected static ?int $navigationSort = 1;
     public static function form(Form $form): Form
     {
         return $form
