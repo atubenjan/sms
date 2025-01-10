@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('grade_name');
             $table->string('grade_from');
             $table->string('grade_upto');
-            $tsble->string('grade_designation');
+            $table->string('grade_designation');
             $table->string('grade_point');
             $table->string('grade_status');
             $table->timestamps();
